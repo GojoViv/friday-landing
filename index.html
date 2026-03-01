@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Friday — Your AI Chief of Staff</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            navy: { 950: '#060b18', 900: '#0a1628', 800: '#0f2040', 700: '#162a52' },
+            blue: { 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb' },
+            amber: { 400: '#fbbf24', 500: '#f59e0b' },
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.6s ease forwards',
+            'fade-in': 'fadeIn 0.5s ease forwards',
+            'pulse-slow': 'pulse 3s ease-in-out infinite',
+            'float': 'float 4s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeUp: { '0%': { opacity: 0, transform: 'translateY(20px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+            fadeIn: { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
+            float: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-8px)' } },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: #060b18; font-family: 'Inter', sans-serif; color: #e2e8f0; overflow-x: hidden; }
+
+    /* Gradient mesh background */
+    .bg-mesh {
+      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(37,99,235,0.15) 0%, transparent 70%),
+                  radial-gradient(ellipse 60% 40% at 80% 60%, rgba(251,191,36,0.06) 0%, transparent 60%),
+                  #060b18;
+    }
+
+    /* Glow effects */
+    .glow-blue { box-shadow: 0 0 40px rgba(59,130,246,0.25); }
+    .glow-blue-sm { box-shadow: 0 0 20px rgba(59,130,246,0.2); }
+    .text-glow { text-shadow: 0 0 60px rgba(59,130,246,0.4); }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #fff 0%, #93c5fd 50%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .gradient-text-amber {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Glass card */
+    .glass {
+      background: rgba(15, 32, 64, 0.5);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(59,130,246,0.12);
+    }
+    .glass-dark {
+      background: rgba(6, 11, 24, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* WhatsApp bubble */
+    .wa-bubble-right {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      border-radius: 18px 18px 4px 18px;
+      padding: 10px 14px;
+      max-width: 240px;
+      margin-left: auto;
+    }
+    .wa-bubble-left {
+      background: rgba(15, 32, 64, 0.9);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 18px 18px 18px 4px;
+      padding: 10px 14px;
+      max-width: 260px;
+    }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Nav blur */
+    .nav-blur {
+      background: rgba(6, 11, 24, 0.8);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Button */
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      transition: all 0.2s ease;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(37,99,235,0.4); }
+
+    /* Feature card hover */
+    .feature-card { transition: all 0.3s ease; }
+    .feature-card:hover { transform: translateY(-4px); border-color: rgba(59,130,246,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+
+    /* Grid lines */
+    .grid-bg {
+      background-image: linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Typing dots */
+    .typing-dot { animation: typingDot 1.4s ease-in-out infinite; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingDot { 0%,80%,100% { opacity: 0.3; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1); } }
+
+    /* Shine */
+    .shine {
+      position: relative;
+      overflow: hidden;
+    }
+    .shine::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+      transform: skewX(-20deg);
+      animation: shine 4s ease-in-out infinite;
+    }
+    @keyframes shine { 0% { left: -60%; } 100% { left: 160%; } }
+  </style>
+</head>
+<body class="bg-mesh">
+
+  <!-- Navigation -->
+  <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm glow-blue-sm">F</div>
+        <span class="font-semibold text-white tracking-tight">Friday</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8 text-sm text-slate-400">
+        <a href="#features" class="hover:text-white transition-colors">Features</a>
+        <a href="#how-it-works" class="hover:text-white transition-colors">How it works</a>
+        <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+      </div>
+      <a href="#waitlist" class="btn-primary text-white text-sm font-medium px-4 py-2 rounded-lg">
+        Get early access
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="grid-bg min-h-screen flex items-center pt-20">
+    <div class="max-w-6xl mx-auto px-6 py-24 text-center">
+
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8 text-sm text-blue-400 font-medium">
+        <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse-slow"></span>
+        Built for India's next generation of founders
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6 text-glow">
+        <span class="gradient-text">Your AI Chief of Staff</span>
+        <br/>
+        <span class="text-white">lives in WhatsApp</span>
+      </h1>
+
+      <!-- Sub -->
+      <p class="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+        Text Friday what you need. It handles your emails, invoices, calendar, follow-ups — so you can focus on building.
+      </p>
+
+      <!-- CTA -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <a href="#waitlist" class="btn-primary text-white font-semibold px-8 py-4 rounded-xl text-lg w-full sm:w-auto">
+          Join the waitlist
+        </a>
+        <a href="#how-it-works" class="glass text-slate-300 font-medium px-8 py-4 rounded-xl text-lg w-full sm:w-auto hover:text-white transition-colors">
+          See how it works →
+        </a>
+      </div>
+
+      <!-- WhatsApp Demo -->
+      <div class="max-w-sm mx-auto animate-float">
+        <div class="glass rounded-3xl p-4 glow-blue">
+          <!-- Phone header -->
+          <div class="flex items-center gap-3 pb-3 border-b border-slate-700/50 mb-4">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold text-sm">F</div>
+            <div class="text-left">
+              <div class="text-white font-semibold text-sm">Friday</div>
+              <div class="text-green-400 text-xs">● online</div>
+            </div>
+          </div>
+
+          <!-- Conversation -->
+          <div class="space-y-3 text-sm text-left">
+            <div class="wa-bubble-right text-white">
+              Send Rahul the pending invoice for the Ajmera project
+            </div>
+            <div class="wa-bubble-left text-slate-200">
+              Done — sent ₹2.4L invoice to rahul@ajmera.com ✓
+            </div>
+            <div class="wa-bubble-right text-white">
+              What's on my calendar tomorrow?
+            </div>
+            <div class="wa-bubble-left text-slate-200">
+              You have 3 meetings:<br/>
+              <span class="text-blue-400">10am</span> — Investor call (Zoom)<br/>
+              <span class="text-blue-400">2pm</span> — Design review<br/>
+              <span class="text-blue-400">5pm</span> — Team standup
+            </div>
+            <div class="wa-bubble-right text-white">
+              Remind me to follow up with Priya on Friday 10am
+            </div>
+            <div class="wa-bubble-left text-slate-200 flex items-center gap-2">
+              <span>Reminder set for Fri 10:00 AM ✓</span>
+            </div>
+          </div>
+
+          <!-- Typing indicator -->
+          <div class="flex items-center gap-1.5 mt-4 pl-2">
+            <div class="w-2 h-2 rounded-full bg-slate-500 typing-dot"></div>
+            <div class="w-2 h-2 rounded-full bg-slate-500 typing-dot"></div>
+            <div class="w-2 h-2 rounded-full bg-slate-500 typing-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tagline strip -->
+  <div class="py-8 border-y border-slate-800/50">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <p class="text-slate-500 text-sm font-medium tracking-widest uppercase">Empowering the one-person companies of tomorrow</p>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <section id="features" class="py-28 px-6">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Everything your ops team does</h2>
+        <p class="text-slate-400 text-xl max-w-xl mx-auto">Without hiring, onboarding, or managing anyone.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- Feature cards -->
+        <div class="feature-card glass rounded-2xl p-6 reveal">
+          <div class="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-600/30 flex items-center justify-center mb-4 text-2xl">📧</div>
+          <h3 class="text-white font-semibold text-lg mb-2">Email, handled</h3>
+          <p class="text-slate-400 leading-relaxed">Read, summarise, and send emails on command. Draft replies in your tone. Never miss an important thread.</p>
+        </div>
+
+        <div class="feature-card glass rounded-2xl p-6 reveal">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center mb-4 text-2xl">🧾</div>
+          <h3 class="text-white font-semibold text-lg mb-2">Invoicing & finance</h3>
+          <p class="text-slate-400 leading-relaxed">Create and send GST-compliant invoices via Zoho Books. Track payments, follow up on dues — all by text.</p>
+        </div>
+
+        <div class="feature-card glass rounded-2xl p-6 reveal">
+          <div class="w-12 h-12 rounded-xl bg-green-500/20 border border-green-500/30 flex items-center justify-center mb-4 text-2xl">📅</div>
+          <h3 class="text-white font-semibold text-lg mb-2">Calendar & scheduling</h3>
+          <p class="text-slate-400 leading-relaxed">Check your schedule, create events, set reminders. Friday makes sure you never double-book or miss a meeting.</p>
+        </div>
+
+        <div class="feature-card glass rounded-2xl p-6 reveal">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center mb-4 text-2xl">🔍</div>
+          <h3 class="text-white font-semibold text-lg mb-2">Search everything</h3>
+          <p class="text-slate-400 leading-relaxed">Find files in Drive, threads in Gmail, pages in Notion — instantly. No more hunting across apps.</p>
+        </div>
+
+        <div class="feature-card glass rounded-2xl p-6 reveal">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center mb-4 text-2xl">🧠</div>
+          <h3 class="text-white font-semibold text-lg mb-2">Persistent memory</h3>
+          <p class="text-slate-400 leading-relaxed">Friday remembers your clients, preferences, and patterns. Gets smarter with every conversation — no re-explaining.</p>
+        </div>
+
+        <div class="feature-card glass rounded-2xl p-6 reveal">
+          <div class="w-12 h-12 rounded-xl bg-rose-500/20 border border-rose-500/30 flex items-center justify-center mb-4 text-2xl">⚡</div>
+          <h3 class="text-white font-semibold text-lg mb-2">Always on, always sharp</h3>
+          <p class="text-slate-400 leading-relaxed">Available 24/7 across WhatsApp, Telegram, and web. No leave, no delays — just instant execution.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how-it-works" class="py-28 px-6 bg-navy-900/30">
+    <div class="max-w-4xl mx-auto">
+
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">No setup. Just text.</h2>
+        <p class="text-slate-400 text-xl">Three steps to your AI chief of staff.</p>
+      </div>
+
+      <div class="space-y-8">
+
+        <div class="flex gap-6 items-start reveal">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg glow-blue-sm">1</div>
+          <div class="glass rounded-2xl p-6 flex-1">
+            <h3 class="text-white font-semibold text-xl mb-2">Connect your tools</h3>
+            <p class="text-slate-400">Link your Gmail, Google Calendar, Zoho Books, and Notion in minutes. Friday gets access to your business context immediately.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-6 items-start reveal">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg glow-blue-sm">2</div>
+          <div class="glass rounded-2xl p-6 flex-1">
+            <h3 class="text-white font-semibold text-xl mb-2">Add Friday on WhatsApp</h3>
+            <p class="text-slate-400">Scan a QR code. That's it. Friday shows up as a contact in your WhatsApp — no new app, no dashboard to learn.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-6 items-start reveal">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg glow-blue-sm">3</div>
+          <div class="glass rounded-2xl p-6 flex-1">
+            <h3 class="text-white font-semibold text-xl mb-2">Just text it</h3>
+            <p class="text-slate-400">Tell Friday what you need in plain language. It handles execution, confirms with you when needed, and learns your preferences over time.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Differentiators -->
+  <section class="py-28 px-6">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Built different</h2>
+        <p class="text-slate-400 text-xl max-w-xl mx-auto">Not another AI chatbot. Friday is an operator — it takes actions, not just answers.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+
+        <div class="reveal">
+          <div class="glass rounded-2xl p-8 h-full shine">
+            <div class="text-4xl mb-4">🇮🇳</div>
+            <h3 class="text-white font-bold text-xl mb-3">Made for India</h3>
+            <p class="text-slate-400 leading-relaxed">Understands GST, Indian accounting norms, IST timezones, and the way Indian businesses actually work. Not a foreign tool retrofitted for India.</p>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="glass rounded-2xl p-8 h-full shine">
+            <div class="text-4xl mb-4">💬</div>
+            <h3 class="text-white font-bold text-xl mb-3">Lives in WhatsApp</h3>
+            <p class="text-slate-400 leading-relaxed">You already live in WhatsApp. Friday meets you there. No new app to install, no dashboard to log into, no habit to form from scratch.</p>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="glass rounded-2xl p-8 h-full shine">
+            <div class="text-4xl mb-4">🔗</div>
+            <h3 class="text-white font-bold text-xl mb-3">Connects your stack</h3>
+            <p class="text-slate-400 leading-relaxed">Gmail, Calendar, Drive, Zoho Books, Notion — Friday works across all of it seamlessly. One assistant for your entire business stack.</p>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="glass rounded-2xl p-8 h-full shine">
+            <div class="text-4xl mb-4">📈</div>
+            <h3 class="text-white font-bold text-xl mb-3">Gets smarter over time</h3>
+            <p class="text-slate-400 leading-relaxed">Friday builds a memory of your business — clients, preferences, patterns. Every interaction makes it sharper. It's not a tool, it's a team member.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Social proof / quote section -->
+  <section class="py-20 px-6 bg-navy-900/30">
+    <div class="max-w-3xl mx-auto text-center reveal">
+      <div class="text-5xl mb-6">💡</div>
+      <blockquote class="text-2xl md:text-3xl font-light text-white leading-relaxed mb-6">
+        "The best founders I know are building one-person companies — <span class="gradient-text-amber font-medium">powered by AI</span>. Friday is how you get there."
+      </blockquote>
+      <p class="text-slate-500 text-sm">Metastart — building tools for the next generation of founders</p>
+    </div>
+  </section>
+
+  <!-- Waitlist / CTA -->
+  <section id="waitlist" class="py-28 px-6">
+    <div class="max-w-2xl mx-auto text-center reveal">
+
+      <div class="glass rounded-3xl p-10 md:p-14 glow-blue">
+        <div class="w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center text-white font-bold text-2xl mx-auto mb-6 glow-blue-sm">F</div>
+
+        <h2 class="text-4xl font-bold text-white mb-4">Get early access</h2>
+        <p class="text-slate-400 text-lg mb-8">Friday is in private beta. Join the waitlist and we'll reach out personally.</p>
+
+        <form onsubmit="handleSubmit(event)" class="space-y-4">
+          <input
+            type="text"
+            placeholder="Your name"
+            id="name"
+            required
+            class="w-full glass-dark rounded-xl px-5 py-4 text-white placeholder-slate-500 outline-none focus:border-blue-500 border border-slate-700 transition-colors"
+          />
+          <input
+            type="tel"
+            placeholder="WhatsApp number (+91...)"
+            id="phone"
+            required
+            class="w-full glass-dark rounded-xl px-5 py-4 text-white placeholder-slate-500 outline-none focus:border-blue-500 border border-slate-700 transition-colors"
+          />
+          <input
+            type="email"
+            placeholder="Work email"
+            id="email"
+            required
+            class="w-full glass-dark rounded-xl px-5 py-4 text-white placeholder-slate-500 outline-none focus:border-blue-500 border border-slate-700 transition-colors"
+          />
+          <button type="submit" class="btn-primary w-full text-white font-semibold px-8 py-4 rounded-xl text-lg">
+            Join the waitlist →
+          </button>
+        </form>
+
+        <p id="success-msg" class="hidden mt-6 text-green-400 font-medium">✓ You're on the list! We'll be in touch soon.</p>
+        <p class="mt-6 text-slate-500 text-sm">No spam. We'll reach out personally over WhatsApp.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 px-6 border-t border-slate-800/50">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded bg-blue-600 flex items-center justify-center text-white font-bold text-xs">F</div>
+        <span class="text-slate-400 text-sm">Friday by <span class="text-white font-medium">Metastart</span></span>
+      </div>
+      <p class="text-slate-600 text-sm">Empowering the one-person companies of tomorrow.</p>
+      <p class="text-slate-600 text-sm">© 2026 Metastart SVY LLP</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Waitlist form
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = 'Submitting...';
+      btn.disabled = true;
+      setTimeout(() => {
+        document.getElementById('success-msg').classList.remove('hidden');
+        e.target.style.display = 'none';
+      }, 800);
+    }
+  </script>
+
+</body>
+</html>
