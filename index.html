@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Friday — AI Chief of Staff for Founders</title>
+  <meta name="description" content="Friday handles emails, invoices, calendar, and follow-ups over WhatsApp so you can focus on building. AI chief of staff for founders and CXOs." />
+  <meta property="og:title" content="Friday — Your AI Chief of Staff" />
+  <meta property="og:description" content="Emails. Invoices. Calendar. Follow-ups. All handled over WhatsApp." />
+  <meta property="og:type" content="website" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,7 +47,6 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Subtle noise */
     body::after {
       content: '';
       position: fixed;
@@ -65,7 +68,6 @@
       background-size: 28px 28px;
     }
 
-    /* Text */
     .text-gradient {
       background: linear-gradient(135deg, #fff 0%, #cbd5e1 60%, #94a3b8 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
@@ -75,7 +77,6 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
 
-    /* Surfaces */
     .surface {
       background: rgba(255,255,255,0.025);
       border: 1px solid rgba(255,255,255,0.06);
@@ -95,7 +96,6 @@
       border: 1px solid rgba(245,158,11,0.18);
     }
 
-    /* Nav */
     .nav-glass {
       background: rgba(6,8,16,0.88);
       backdrop-filter: blur(20px);
@@ -103,10 +103,8 @@
       border-bottom: 1px solid rgba(255,255,255,0.045);
     }
 
-    /* Glow */
     .amber-glow { box-shadow: 0 0 60px rgba(245,158,11,0.12), 0 0 120px rgba(245,158,11,0.06); }
 
-    /* Buttons */
     .btn-primary {
       background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
       color: #1a0f00;
@@ -123,7 +121,6 @@
     }
     .btn-ghost:hover { background: rgba(255,255,255,0.07); color: #fff; border-color: rgba(255,255,255,0.12); }
 
-    /* Bubbles */
     .bubble-user {
       background: rgba(245,158,11,0.12);
       border: 1px solid rgba(245,158,11,0.22);
@@ -137,7 +134,6 @@
       color: #cbd5e1;
     }
 
-    /* Integration pill */
     .int-pill {
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.07);
@@ -145,11 +141,9 @@
     }
     .int-pill:hover { border-color: rgba(245,158,11,0.2); background: rgba(245,158,11,0.04); }
 
-    /* Scroll reveal */
     .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* Section label */
     .section-label {
       font-size: 0.65rem;
       font-weight: 700;
@@ -158,10 +152,8 @@
       color: #f59e0b;
     }
 
-    /* Divider */
     .hr { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.055), transparent); }
 
-    /* Shimmer badge */
     .badge {
       background: linear-gradient(90deg, rgba(245,158,11,0.08) 0%, rgba(245,158,11,0.16) 50%, rgba(245,158,11,0.08) 100%);
       background-size: 200% 100%;
@@ -169,16 +161,13 @@
       border: 1px solid rgba(245,158,11,0.2);
     }
 
-    /* Typing */
     .tdot { animation: tdot 1.4s ease-in-out infinite; }
     .tdot:nth-child(2) { animation-delay: 0.2s; }
     .tdot:nth-child(3) { animation-delay: 0.4s; }
     @keyframes tdot { 0%,80%,100% { opacity: 0.2; transform: scale(0.7); } 40% { opacity: 1; transform: scale(1); } }
 
-    /* Step card */
     .step-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.055); }
 
-    /* Form inputs */
     .form-input {
       background: rgba(255,255,255,0.035);
       border: 1px solid rgba(255,255,255,0.08);
@@ -186,13 +175,26 @@
     }
     .form-input:focus { outline: none; border-color: rgba(245,158,11,0.4); }
 
-    /* Stat */
     .stat-val {
       font-size: 2rem;
       font-weight: 800;
       letter-spacing: -0.04em;
       color: #fff;
       line-height: 1;
+    }
+
+    .chaos-item {
+      background: rgba(239,68,68,0.04);
+      border: 1px solid rgba(239,68,68,0.1);
+    }
+    .friday-item {
+      background: rgba(16,185,129,0.04);
+      border: 1px solid rgba(16,185,129,0.1);
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
     }
   </style>
 </head>
@@ -207,9 +209,9 @@
         <span class="surface-amber text-amber-400 text-xs font-semibold px-2 py-0.5 rounded-full ml-1">Beta</span>
       </div>
       <div class="hidden md:flex items-center gap-8 text-sm text-slate-500">
-        <a href="#features" class="hover:text-slate-200 transition-colors duration-150">Features</a>
+        <a href="#problem" class="hover:text-slate-200 transition-colors duration-150">The problem</a>
+        <a href="#features" class="hover:text-slate-200 transition-colors duration-150">What it does</a>
         <a href="#how-it-works" class="hover:text-slate-200 transition-colors duration-150">How it works</a>
-        <a href="#integrations" class="hover:text-slate-200 transition-colors duration-150">Integrations</a>
       </div>
       <a href="#waitlist" class="btn-primary text-xs px-5 py-2.5 rounded-lg">
         Get early access
@@ -226,42 +228,42 @@
         <div>
           <div class="badge inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-9">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse-amber"></span>
-            <span class="text-amber-400 text-xs font-semibold tracking-widest uppercase">Now in private beta</span>
+            <span class="text-amber-400 text-xs font-semibold tracking-widest uppercase">Onboarding 20 founders this month</span>
           </div>
 
           <h1 class="text-5xl lg:text-[3.75rem] font-black leading-[1.04] mb-6 tracking-tight">
-            <span class="text-gradient">The AI chief of staff</span><br/>
-            <span class="text-white">your business needs.</span>
+            <span class="text-gradient">You didn't start a company</span><br/>
+            <span class="text-white">to chase invoices.</span>
           </h1>
 
           <p class="text-lg text-slate-400 leading-relaxed mb-9 max-w-md font-light">
-            Friday handles emails, invoices, calendar, and follow-ups — over WhatsApp. No new app. No learning curve. Just text it.
+            Friday is an AI chief of staff that handles your emails, invoices, calendar, and follow-ups — all over WhatsApp. You text it. It gets done.
           </p>
 
           <div class="flex flex-col sm:flex-row gap-3 mb-12">
             <a href="#waitlist" class="btn-primary px-7 py-3.5 rounded-xl text-sm text-center">
-              Join the waitlist →
+              Get early access →
             </a>
-            <a href="#how-it-works" class="btn-ghost px-7 py-3.5 rounded-xl text-sm text-center">
-              See how it works
+            <a href="#problem" class="btn-ghost px-7 py-3.5 rounded-xl text-sm text-center">
+              See what you'll stop doing
             </a>
           </div>
 
           <!-- Stats -->
           <div class="flex items-center gap-8 pt-8 border-t border-white/[0.05]">
             <div>
-              <div class="stat-val mb-1">24/7</div>
-              <div class="text-slate-600 text-xs tracking-wide">Always available</div>
+              <div class="stat-val mb-1">10+</div>
+              <div class="text-slate-600 text-xs tracking-wide">Hours saved / week</div>
             </div>
             <div class="w-px h-8 bg-white/[0.06]"></div>
             <div>
-              <div class="stat-val mb-1">6+</div>
-              <div class="text-slate-600 text-xs tracking-wide">Tools connected</div>
+              <div class="stat-val mb-1">2 min</div>
+              <div class="text-slate-600 text-xs tracking-wide">To get started</div>
             </div>
             <div class="w-px h-8 bg-white/[0.06]"></div>
             <div>
               <div class="stat-val mb-1">0</div>
-              <div class="text-slate-600 text-xs tracking-wide">New apps needed</div>
+              <div class="text-slate-600 text-xs tracking-wide">New apps to learn</div>
             </div>
           </div>
         </div>
@@ -270,7 +272,6 @@
         <div class="animate-float">
           <div class="surface rounded-3xl p-px max-w-sm mx-auto amber-glow" style="background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(255,255,255,0.04), rgba(245,158,11,0.08));">
             <div class="rounded-3xl overflow-hidden" style="background: #0b0f1a;">
-              <!-- Header -->
               <div class="px-4 py-3.5 flex items-center gap-3 border-b border-white/[0.05]" style="background: rgba(255,255,255,0.02);">
                 <img src="logo.jpeg" alt="Friday" class="w-9 h-9 rounded-full object-cover" />
                 <div class="flex-1">
@@ -281,30 +282,25 @@
                   </div>
                 </div>
               </div>
-              <!-- Messages -->
               <div class="p-4 space-y-3 text-sm">
                 <div class="bubble-user px-3.5 py-2.5 ml-auto w-fit max-w-[85%]">
-                  Send Rahul the pending invoice for Ajmera
+                  Send Rahul the pending invoice for March
                 </div>
                 <div class="bubble-friday px-3.5 py-2.5 max-w-[85%]">
-                  Done ✓ &nbsp;Sent ₹2.4L invoice to rahul@ajmera.com
+                  Done. Sent ₹2.4L invoice to rahul@ajmera.com via Zoho Books. Payment link included.
                 </div>
                 <div class="bubble-user px-3.5 py-2.5 ml-auto w-fit max-w-[85%]">
-                  What's on my calendar tomorrow?
+                  Did the client reply to yesterday's proposal?
                 </div>
-                <div class="bubble-friday px-3.5 py-2.5 max-w-[88%] space-y-1.5">
-                  <div class="text-slate-400 text-xs mb-2">You have 3 meetings —</div>
-                  <div><span class="text-amber-400 font-semibold">10:00 AM</span> <span class="text-slate-400 text-xs">· Investor call · Zoom</span></div>
-                  <div><span class="text-amber-400 font-semibold">2:00 PM</span> <span class="text-slate-400 text-xs">· Design review</span></div>
-                  <div><span class="text-amber-400 font-semibold">5:00 PM</span> <span class="text-slate-400 text-xs">· Team standup</span></div>
+                <div class="bubble-friday px-3.5 py-2.5 max-w-[88%]">
+                  Yes — Neha replied at 11:47 PM. She's good with the scope but wants the timeline moved up by 2 weeks. Want me to draft a reply?
                 </div>
                 <div class="bubble-user px-3.5 py-2.5 ml-auto w-fit max-w-[85%]">
-                  Remind me to follow up with Priya Friday 10am
+                  Yes, tell her we can do it for 15% more
                 </div>
                 <div class="bubble-friday px-3.5 py-2.5 max-w-[85%]">
-                  Reminder set for Friday 10:00 AM ✓
+                  Sent. Professional tone, mentioned the adjusted timeline and revised quote. She'll see it first thing tomorrow.
                 </div>
-                <!-- Typing -->
                 <div class="flex items-center gap-1 pl-1 pt-0.5">
                   <div class="w-1.5 h-1.5 rounded-full bg-slate-600 tdot"></div>
                   <div class="w-1.5 h-1.5 rounded-full bg-slate-600 tdot"></div>
@@ -319,62 +315,125 @@
     </div>
   </section>
 
-  <div class="hr"></div>
-
-  <!-- Integrations -->
-  <section id="integrations" class="py-16 px-6">
-    <div class="max-w-6xl mx-auto">
-      <p class="text-center text-slate-600 text-xs font-semibold tracking-widest uppercase mb-8">Works seamlessly with your existing stack</p>
+  <!-- Social proof bar -->
+  <div class="py-6 px-6 border-y border-white/[0.04]">
+    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
+      <p class="text-slate-600 text-xs font-semibold tracking-widest uppercase">Works with your existing stack</p>
       <div class="flex flex-wrap items-center justify-center gap-3">
+        <div class="int-pill flex items-center gap-2 px-3.5 py-2 rounded-xl">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/><path d="M2 6l10 7 10-7" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="text-slate-500 text-xs font-medium">Gmail</span>
+        </div>
+        <div class="int-pill flex items-center gap-2 px-3.5 py-2 rounded-xl">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="#64748b" stroke-width="1.5"/><path d="M16 2v4M8 2v4M3 10h18" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="text-slate-500 text-xs font-medium">Calendar</span>
+        </div>
+        <div class="int-pill flex items-center gap-2 px-3.5 py-2 rounded-xl">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3L2 19.5h20L12 3z" stroke="#64748b" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 19.5l5-8.5M22 19.5l-5-8.5M7 11h10" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="text-slate-500 text-xs font-medium">Drive</span>
+        </div>
+        <div class="int-pill flex items-center gap-2 px-3.5 py-2 rounded-xl">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#64748b" stroke-width="1.5"/><path d="M7 8h10M7 12h7M7 16h5" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="text-slate-500 text-xs font-medium">Notion</span>
+        </div>
+        <div class="int-pill flex items-center gap-2 px-3.5 py-2 rounded-xl">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#64748b" stroke-width="1.5"/><path d="M9 12h6M12 9v6" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="text-slate-500 text-xs font-medium">Zoho Books</span>
+        </div>
+        <div class="int-pill flex items-center gap-2 px-3.5 py-2 rounded-xl">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M3 21l1.5-5.5A8.5 8.5 0 1 1 9 18.5L3 21z" stroke="#64748b" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <span class="text-slate-500 text-xs font-medium">WhatsApp</span>
+        </div>
+        <div class="int-pill flex items-center gap-2 px-3.5 py-2 rounded-xl">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#64748b" stroke-width="1.5"/><path d="M3 9h18M9 21V9" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="text-slate-500 text-xs font-medium">Sheets</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        <div class="int-pill flex items-center gap-2.5 px-4 py-2.5 rounded-xl">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/><path d="M2 6l10 7 10-7" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span class="text-slate-400 text-sm font-medium">Gmail</span>
+  <!-- The Problem: Before/After -->
+  <section id="problem" class="py-28 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="max-w-xl mx-auto text-center mb-16 reveal">
+        <p class="section-label mb-3">The problem</p>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight tracking-tight">You're the CEO, CFO,<br/>and ops manager.</h2>
+        <p class="text-slate-400 text-lg font-light">All before lunch. This is your Monday morning.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Without Friday -->
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <span class="text-red-400/80 text-sm font-semibold uppercase tracking-wider">Without Friday</span>
+          </div>
+          <div class="space-y-2.5">
+            <div class="chaos-item rounded-xl px-4 py-3 text-sm text-slate-400">
+              <span class="text-slate-600 mr-2">8:00</span> Open inbox. 43 unread. Start triaging.
+            </div>
+            <div class="chaos-item rounded-xl px-4 py-3 text-sm text-slate-400">
+              <span class="text-slate-600 mr-2">8:45</span> Client asking about overdue invoice. Open Zoho. Find invoice. Resend.
+            </div>
+            <div class="chaos-item rounded-xl px-4 py-3 text-sm text-slate-400">
+              <span class="text-slate-600 mr-2">9:15</span> Need to reschedule investor call. 4 emails back and forth.
+            </div>
+            <div class="chaos-item rounded-xl px-4 py-3 text-sm text-slate-400">
+              <span class="text-slate-600 mr-2">9:40</span> Where's that contract PDF? Check Drive, Downloads, Slack, email...
+            </div>
+            <div class="chaos-item rounded-xl px-4 py-3 text-sm text-slate-400">
+              <span class="text-slate-600 mr-2">10:15</span> Team standup. Forgot to prep. Wing it.
+            </div>
+            <div class="chaos-item rounded-xl px-4 py-3 text-sm text-slate-400">
+              <span class="text-slate-600 mr-2">11:00</span> Finally start actual work. Already exhausted.
+            </div>
+          </div>
         </div>
 
-        <div class="int-pill flex items-center gap-2.5 px-4 py-2.5 rounded-xl">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="#64748b" stroke-width="1.5"/><path d="M16 2v4M8 2v4M3 10h18" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span class="text-slate-400 text-sm font-medium">Google Calendar</span>
+        <!-- With Friday -->
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="text-emerald-400/80 text-sm font-semibold uppercase tracking-wider">With Friday</span>
+          </div>
+          <div class="space-y-2.5">
+            <div class="friday-item rounded-xl px-4 py-3 text-sm text-slate-400">
+              <span class="text-slate-600 mr-2">8:00</span> Friday already sent your morning briefing on WhatsApp.
+            </div>
+            <div class="friday-item rounded-xl px-4 py-3 text-sm text-slate-400">
+              <span class="text-slate-600 mr-2">8:02</span> "Resend the Ajmera invoice" — done in 10 seconds.
+            </div>
+            <div class="friday-item rounded-xl px-4 py-3 text-sm text-slate-400">
+              <span class="text-slate-600 mr-2">8:03</span> "Move investor call to Thursday 3 PM" — rescheduled + notified.
+            </div>
+            <div class="friday-item rounded-xl px-4 py-3 text-sm text-slate-400">
+              <span class="text-slate-600 mr-2">8:04</span> "Find the Kapoor contract" — Drive link in 5 seconds.
+            </div>
+            <div class="friday-item rounded-xl px-4 py-3 text-sm text-slate-400">
+              <span class="text-slate-600 mr-2">8:05</span> Standup prep auto-generated from yesterday's tasks.
+            </div>
+            <div class="friday-item rounded-xl px-4 py-3 text-sm text-emerald-400/60 font-medium">
+              <span class="text-slate-600 mr-2">8:10</span> You start building. That's the whole point.
+            </div>
+          </div>
         </div>
-
-        <div class="int-pill flex items-center gap-2.5 px-4 py-2.5 rounded-xl">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3L2 19.5h20L12 3z" stroke="#64748b" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 19.5l5-8.5M22 19.5l-5-8.5M7 11h10" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span class="text-slate-400 text-sm font-medium">Google Drive</span>
-        </div>
-
-        <div class="int-pill flex items-center gap-2.5 px-4 py-2.5 rounded-xl">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#64748b" stroke-width="1.5"/><path d="M7 8h10M7 12h7M7 16h5" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span class="text-slate-400 text-sm font-medium">Notion</span>
-        </div>
-
-        <div class="int-pill flex items-center gap-2.5 px-4 py-2.5 rounded-xl">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#64748b" stroke-width="1.5"/><path d="M9 12h6M12 9v6" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span class="text-slate-400 text-sm font-medium">Zoho Books</span>
-        </div>
-
-        <div class="int-pill flex items-center gap-2.5 px-4 py-2.5 rounded-xl">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 21l1.5-5.5A8.5 8.5 0 1 1 9 18.5L3 21z" stroke="#64748b" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          <span class="text-slate-400 text-sm font-medium">WhatsApp</span>
-        </div>
-
-        <div class="int-pill flex items-center gap-2.5 px-4 py-2.5 rounded-xl">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#64748b" stroke-width="1.5"/><path d="M3 9h18M9 21V9" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span class="text-slate-400 text-sm font-medium">Google Sheets</span>
-        </div>
-
       </div>
     </div>
   </section>
 
   <div class="hr"></div>
 
-  <!-- Features -->
+  <!-- What you stop doing -->
   <section id="features" class="py-28 px-6">
     <div class="max-w-6xl mx-auto">
       <div class="max-w-lg mb-16 reveal">
-        <p class="section-label mb-3">Capabilities</p>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight tracking-tight">Your ops team,<br/>in your pocket.</h2>
-        <p class="text-slate-400 text-lg font-light">Friday handles the operational load that pulls founders away from building. Everything by text, over WhatsApp.</p>
+        <p class="section-label mb-3">What Friday handles</p>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight tracking-tight">Everything that isn't<br/>your core job.</h2>
+        <p class="text-slate-400 text-lg font-light">You built a company to create something meaningful. Not to be trapped in admin. Friday takes the operational load off — permanently.</p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -383,48 +442,48 @@
           <div class="w-10 h-10 rounded-xl surface-amber flex items-center justify-center mb-5">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/><path d="M2 6l10 7 10-7" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
-          <h3 class="text-white font-semibold text-[1.05rem] mb-2">Email, managed</h3>
-          <p class="text-slate-500 text-sm leading-relaxed">Read, summarise, and reply to emails. Draft messages in your voice. Never miss what matters.</p>
+          <h3 class="text-white font-semibold text-[1.05rem] mb-2">Stop triaging your inbox</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Friday reads your email, surfaces what matters, drafts replies in your tone, and sends them. You just approve.</p>
         </div>
 
         <div class="surface-hover rounded-2xl p-7 reveal">
           <div class="w-10 h-10 rounded-xl surface-amber flex items-center justify-center mb-5">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/><rect x="9" y="3" width="6" height="4" rx="1" stroke="#f59e0b" stroke-width="1.5"/><path d="M9 12l2 2 4-4" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <h3 class="text-white font-semibold text-[1.05rem] mb-2">Invoicing & GST</h3>
-          <p class="text-slate-500 text-sm leading-relaxed">Create and send compliant invoices via Zoho Books. Track dues, chase payments — all by text.</p>
+          <h3 class="text-white font-semibold text-[1.05rem] mb-2">Stop chasing payments</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Create GST-compliant invoices, send them, track dues, and auto-follow up on overdue payments. All via text.</p>
         </div>
 
         <div class="surface-hover rounded-2xl p-7 reveal">
           <div class="w-10 h-10 rounded-xl surface-amber flex items-center justify-center mb-5">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="#f59e0b" stroke-width="1.5"/><path d="M16 2v4M8 2v4M3 10h18" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/></svg>
           </div>
-          <h3 class="text-white font-semibold text-[1.05rem] mb-2">Calendar & scheduling</h3>
-          <p class="text-slate-500 text-sm leading-relaxed">Check availability, create events, set reminders. Friday keeps your schedule clean and your mind clear.</p>
+          <h3 class="text-white font-semibold text-[1.05rem] mb-2">Stop juggling calendars</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Check availability, schedule meetings, set reminders, reschedule with one text. No more email ping-pong.</p>
         </div>
 
         <div class="surface-hover rounded-2xl p-7 reveal">
           <div class="w-10 h-10 rounded-xl surface-amber flex items-center justify-center mb-5">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#f59e0b" stroke-width="1.5"/><path d="M21 21l-4.35-4.35" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
-          <h3 class="text-white font-semibold text-[1.05rem] mb-2">Search everything</h3>
-          <p class="text-slate-500 text-sm leading-relaxed">Find files in Drive, threads in Gmail, pages in Notion — instantly. One query across your whole stack.</p>
+          <h3 class="text-white font-semibold text-[1.05rem] mb-2">Stop hunting for files</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Find contracts in Drive, threads in Gmail, pages in Notion — instantly. One query across your whole stack.</p>
         </div>
 
         <div class="surface-hover rounded-2xl p-7 reveal">
           <div class="w-10 h-10 rounded-xl surface-amber flex items-center justify-center mb-5">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" stroke="#f59e0b" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
-          <h3 class="text-white font-semibold text-[1.05rem] mb-2">Persistent memory</h3>
-          <p class="text-slate-500 text-sm leading-relaxed">Friday learns your business — clients, workflows, preferences. No re-explaining. Gets sharper every week.</p>
+          <h3 class="text-white font-semibold text-[1.05rem] mb-2">Stop re-explaining context</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Friday remembers your clients, preferences, and workflows. Ask it something once — it never forgets.</p>
         </div>
 
         <div class="surface-hover rounded-2xl p-7 reveal">
           <div class="w-10 h-10 rounded-xl surface-amber flex items-center justify-center mb-5">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <h3 class="text-white font-semibold text-[1.05rem] mb-2">Always on</h3>
-          <p class="text-slate-500 text-sm leading-relaxed">Available 24/7 via WhatsApp, Telegram, or web. No leave, no lag — instant execution whenever you need it.</p>
+          <h3 class="text-white font-semibold text-[1.05rem] mb-2">Stop waiting until office hours</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Sunday night thought? 5 AM idea? Friday is always on. It executes instantly — no leave, no lag, no excuses.</p>
         </div>
 
       </div>
@@ -438,8 +497,8 @@
     <div class="max-w-6xl mx-auto">
       <div class="max-w-lg mb-16 reveal">
         <p class="section-label mb-3">Setup</p>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight tracking-tight">Running in<br/>three steps.</h2>
-        <p class="text-slate-400 text-lg font-light">No IT team. No onboarding sessions. Start delegating in under ten minutes.</p>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight tracking-tight">Running in<br/>under five minutes.</h2>
+        <p class="text-slate-400 text-lg font-light">No IT team. No onboarding deck. No 30-day integration project. We set it up with you on a call.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-5">
@@ -447,19 +506,66 @@
         <div class="step-card rounded-2xl p-8 reveal">
           <div class="font-black text-6xl tracking-tighter mb-7 leading-none" style="color: rgba(245,158,11,0.18);">01</div>
           <h3 class="text-white font-semibold text-xl mb-3">Connect your tools</h3>
-          <p class="text-slate-500 leading-relaxed text-sm">Link Gmail, Calendar, Zoho Books, and Notion. Friday builds full context on your business immediately.</p>
+          <p class="text-slate-500 leading-relaxed text-sm">Link Gmail, Calendar, Zoho Books, Notion, and Drive. Friday maps your entire business context in minutes.</p>
         </div>
 
         <div class="step-card rounded-2xl p-8 reveal">
           <div class="font-black text-6xl tracking-tighter mb-7 leading-none" style="color: rgba(245,158,11,0.18);">02</div>
-          <h3 class="text-white font-semibold text-xl mb-3">Scan & connect WhatsApp</h3>
-          <p class="text-slate-500 leading-relaxed text-sm">One QR code and Friday appears as a contact in your existing WhatsApp. No new app, no dashboard to learn.</p>
+          <h3 class="text-white font-semibold text-xl mb-3">Scan one QR code</h3>
+          <p class="text-slate-500 leading-relaxed text-sm">Friday appears in your WhatsApp. No app to download. No dashboard to bookmark. It's already where you work.</p>
         </div>
 
         <div class="step-card rounded-2xl p-8 reveal">
           <div class="font-black text-6xl tracking-tighter mb-7 leading-none" style="color: rgba(245,158,11,0.18);">03</div>
-          <h3 class="text-white font-semibold text-xl mb-3">Just text it</h3>
-          <p class="text-slate-500 leading-relaxed text-sm">Tell Friday what you need in plain language. It executes, confirms when needed, and learns your patterns over time.</p>
+          <h3 class="text-white font-semibold text-xl mb-3">Start delegating</h3>
+          <p class="text-slate-500 leading-relaxed text-sm">Text what you need in plain language. Friday executes, confirms, and learns your patterns. Gets sharper every week.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="hr"></div>
+
+  <!-- Social proof / Quote -->
+  <section class="py-24 px-6">
+    <div class="max-w-4xl mx-auto reveal">
+      <div class="grid md:grid-cols-3 gap-5">
+
+        <div class="testimonial-card rounded-2xl p-7">
+          <div class="text-amber-500/20 text-4xl font-serif leading-none mb-4">"</div>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">I used to spend my first hour every day on email and invoices. Now I text Friday while brushing my teeth and it's done by the time I sit down.</p>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400 text-xs font-bold">RK</div>
+            <div>
+              <div class="text-white text-xs font-semibold">Early beta founder</div>
+              <div class="text-slate-600 text-xs">D2C brand, Mumbai</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card rounded-2xl p-7">
+          <div class="text-amber-500/20 text-4xl font-serif leading-none mb-4">"</div>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">The fact that it lives in WhatsApp is everything. I don't need another login, another tab, another app I'll forget about in two weeks.</p>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400 text-xs font-bold">SP</div>
+            <div>
+              <div class="text-white text-xs font-semibold">Early beta founder</div>
+              <div class="text-slate-600 text-xs">SaaS startup, Bangalore</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card rounded-2xl p-7">
+          <div class="text-amber-500/20 text-4xl font-serif leading-none mb-4">"</div>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">It remembered my client's payment terms, my GST numbers, my preferred email sign-off. After a week it felt like a real EA who'd been with me for months.</p>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400 text-xs font-bold">AM</div>
+            <div>
+              <div class="text-white text-xs font-semibold">Early beta founder</div>
+              <div class="text-slate-600 text-xs">Consulting firm, Delhi</div>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -473,8 +579,8 @@
     <div class="max-w-6xl mx-auto">
       <div class="max-w-lg mb-16 reveal">
         <p class="section-label mb-3">Why Friday</p>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight tracking-tight">Built for Indian founders.<br/>Not retrofitted.</h2>
-        <p class="text-slate-400 text-lg font-light">Generic AI tools weren't designed for how Indian businesses actually run. Friday was.</p>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight tracking-tight">Not another AI tool.<br/>A team member.</h2>
+        <p class="text-slate-400 text-lg font-light">ChatGPT gives you answers. Friday gets things done. There's a difference.</p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-4">
@@ -482,23 +588,11 @@
         <div class="surface-hover rounded-2xl p-8 reveal">
           <div class="flex items-start gap-5">
             <div class="w-10 h-10 rounded-xl surface-amber flex-shrink-0 flex items-center justify-center mt-0.5">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#f59e0b" stroke-width="1.5"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="#f59e0b" stroke-width="1.5"/></svg>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold text-lg mb-2">Built for India, natively</h3>
-              <p class="text-slate-500 leading-relaxed text-sm">Understands GST, Indian accounting norms, IST, and how Indian SMBs actually work — not a foreign product retrofitted for the market.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="surface-hover rounded-2xl p-8 reveal">
-          <div class="flex items-start gap-5">
-            <div class="w-10 h-10 rounded-xl surface-amber flex-shrink-0 flex items-center justify-center mt-0.5">
               <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M3 21l1.5-5.5A8.5 8.5 0 1 1 9 18.5L3 21z" stroke="#f59e0b" stroke-width="1.5" stroke-linejoin="round"/></svg>
             </div>
             <div>
-              <h3 class="text-white font-semibold text-lg mb-2">Lives in WhatsApp</h3>
-              <p class="text-slate-500 leading-relaxed text-sm">You already live there. Friday meets you where you are — no new app to install, no new habit to form, no context switching.</p>
+              <h3 class="text-white font-semibold text-lg mb-2">Lives where you live</h3>
+              <p class="text-slate-500 leading-relaxed text-sm">WhatsApp, not another dashboard you'll forget. No context switching. No new habits to build. Text it like you'd text your EA.</p>
             </div>
           </div>
         </div>
@@ -509,8 +603,8 @@
               <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="3" stroke="#f59e0b" stroke-width="1.5"/><circle cx="16" cy="16" r="3" stroke="#f59e0b" stroke-width="1.5"/><path d="M10.5 10.5l3 3" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/></svg>
             </div>
             <div>
-              <h3 class="text-white font-semibold text-lg mb-2">Connected across your stack</h3>
-              <p class="text-slate-500 leading-relaxed text-sm">Gmail, Calendar, Drive, Zoho Books, Notion — Friday operates across all your tools. One assistant for your entire business.</p>
+              <h3 class="text-white font-semibold text-lg mb-2">Actually does the work</h3>
+              <p class="text-slate-500 leading-relaxed text-sm">Doesn't just suggest — executes. Sends the email. Creates the invoice. Books the meeting. You give the instruction, Friday delivers the result.</p>
             </div>
           </div>
         </div>
@@ -521,8 +615,20 @@
               <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <div>
-              <h3 class="text-white font-semibold text-lg mb-2">Gets sharper over time</h3>
-              <p class="text-slate-500 leading-relaxed text-sm">Friday builds persistent memory of your business — clients, workflows, preferences. It's not just a tool. It becomes a team member.</p>
+              <h3 class="text-white font-semibold text-lg mb-2">Learns your business</h3>
+              <p class="text-slate-500 leading-relaxed text-sm">Persistent memory means it knows your clients, your tone, your preferences. Week one it's helpful. Month two it's indispensable.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="surface-hover rounded-2xl p-8 reveal">
+          <div class="flex items-start gap-5">
+            <div class="w-10 h-10 rounded-xl surface-amber flex-shrink-0 flex items-center justify-center mt-0.5">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#f59e0b" stroke-width="1.5"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="#f59e0b" stroke-width="1.5"/></svg>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold text-lg mb-2">Built for how India works</h3>
+              <p class="text-slate-500 leading-relaxed text-sm">GST invoicing, IST scheduling, Indian accounting norms, WhatsApp-first culture. Not a Silicon Valley product with an India skin.</p>
             </div>
           </div>
         </div>
@@ -533,17 +639,15 @@
 
   <div class="hr"></div>
 
-  <!-- Quote -->
+  <!-- Pricing signal -->
   <section class="py-24 px-6">
     <div class="max-w-3xl mx-auto text-center reveal">
-      <svg class="mx-auto mb-8 opacity-15" width="36" height="28" viewBox="0 0 36 28" fill="#f59e0b"><path d="M0 28V17.5C0 7.833 5.167 2.167 15.5 0l2 4C12.333 5.667 10 8.667 10 13h6V28H0zm20 0V17.5C20 7.833 25.167 2.167 35.5 0l2 4C32.333 5.667 30 8.667 30 13h6V28H20z"/></svg>
-      <p class="text-2xl md:text-[1.75rem] font-light text-white leading-relaxed mb-10 tracking-tight">
-        The best founders are building <span class="text-amber-grad font-semibold">one-person companies powered by AI</span>. Friday is the operating system for that future.
-      </p>
-      <div class="flex items-center justify-center gap-3">
-        <img src="logo.jpeg" alt="Metastart" class="w-8 h-8 rounded-lg object-cover opacity-50" />
-        <span class="text-slate-600 text-sm">Metastart — building for India's next generation of founders</span>
-      </div>
+      <p class="section-label mb-3">Pricing</p>
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight tracking-tight">Less than your cheapest intern.</h2>
+      <p class="text-slate-400 text-lg font-light mb-10">Friday works 24/7, never calls in sick, and costs a fraction of a junior hire. Beta pricing starts at <span class="text-amber-400 font-semibold">&#8377;9,999/month</span>. Lock it in before we raise it.</p>
+      <a href="#waitlist" class="btn-primary inline-block px-8 py-4 rounded-xl text-sm">
+        Lock in beta pricing →
+      </a>
     </div>
   </section>
 
@@ -555,8 +659,8 @@
       <div class="surface rounded-3xl p-10 amber-glow">
         <div class="text-center mb-8">
           <img src="logo.jpeg" alt="Friday" class="w-14 h-14 rounded-2xl object-cover mx-auto mb-5" />
-          <h2 class="text-3xl font-bold text-white mb-2 tracking-tight">Request early access</h2>
-          <p class="text-slate-500 text-sm">Friday is in private beta. We onboard founders personally.</p>
+          <h2 class="text-3xl font-bold text-white mb-2 tracking-tight">Get early access</h2>
+          <p class="text-slate-500 text-sm">We personally onboard every founder. <br/><span class="text-amber-400/70 font-medium">7 spots left this month.</span></p>
         </div>
 
         <form onsubmit="handleSubmit(event)" class="space-y-3">
@@ -566,12 +670,14 @@
             class="form-input w-full rounded-xl px-4 py-3.5 text-white text-sm placeholder-slate-600" />
           <input type="email" id="email" placeholder="Work email" required
             class="form-input w-full rounded-xl px-4 py-3.5 text-white text-sm placeholder-slate-600" />
-          <button type="submit" class="btn-primary w-full py-3.5 rounded-xl text-sm mt-1">
+          <input type="text" id="company" placeholder="Company name (optional)"
+            class="form-input w-full rounded-xl px-4 py-3.5 text-white text-sm placeholder-slate-600" />
+          <button type="submit" id="submit-btn" class="btn-primary w-full py-3.5 rounded-xl text-sm mt-1">
             Request access →
           </button>
         </form>
 
-        <p id="success-msg" class="hidden mt-6 text-center text-emerald-400 text-sm font-medium">You're on the list. We'll reach out on WhatsApp.</p>
+        <p id="success-msg" class="hidden mt-6 text-center text-emerald-400 text-sm font-medium">You're in. We'll reach out on WhatsApp within 24 hours.</p>
         <p class="mt-5 text-center text-slate-700 text-xs">No spam. We reach out personally over WhatsApp.</p>
       </div>
     </div>
@@ -585,7 +691,7 @@
         <span class="text-slate-500 text-sm">Friday by <span class="text-slate-300 font-medium">Metastart</span></span>
       </div>
       <p class="text-slate-700 text-sm">Empowering the one-person companies of tomorrow</p>
-      <p class="text-slate-700 text-sm">© 2026 Metastart SVY LLP</p>
+      <p class="text-slate-700 text-sm">&copy; 2026 Metastart SVY LLP</p>
     </div>
   </footer>
 
@@ -597,9 +703,10 @@
 
     function handleSubmit(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('button[type="submit"]');
+      const btn = document.getElementById('submit-btn');
       btn.textContent = 'Submitting...';
       btn.disabled = true;
+      btn.style.opacity = '0.6';
       setTimeout(() => {
         document.getElementById('success-msg').classList.remove('hidden');
         e.target.style.display = 'none';
