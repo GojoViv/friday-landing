@@ -701,16 +701,39 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault();
       const btn = document.getElementById('submit-btn');
       btn.textContent = 'Submitting...';
       btn.disabled = true;
       btn.style.opacity = '0.6';
-      setTimeout(() => {
-        document.getElementById('success-msg').classList.remove('hidden');
-        e.target.style.display = 'none';
-      }, 800);
+
+      const body = {
+        name: document.getElementById('name').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        company: document.getElementById('company').value.trim(),
+      };
+
+      try {
+        const res = await fetch('/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+
+        if (res.ok) {
+          document.getElementById('success-msg').classList.remove('hidden');
+          e.target.style.display = 'none';
+        } else {
+          throw new Error('Server error');
+        }
+      } catch (err) {
+        btn.textContent = 'Request access →';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        alert('Something went wrong. Please try again.');
+      }
     }
   </script>
 
